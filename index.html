@@ -47,12 +47,14 @@
   }
   header.app-head p.sub{color:var(--muted);font-size:0.9rem;margin-top:4px;}
   .credit{
-    text-align:right;font-size:0.76rem;color:var(--muted);line-height:1.5;white-space:nowrap;
+    text-align:right;font-size:0.8rem;color:var(--muted);line-height:1.5;white-space:nowrap;
   }
-  .credit b{color:var(--teal-dark);font-weight:700;}
+  .credit b{
+    display:inline-block;color:var(--teal-dark);font-weight:900;font-size:1rem;
+    border-bottom:2px solid var(--orange);padding-bottom:1px;
+  }
   .credit .claude{
-    display:inline-block;margin-top:2px;background:var(--orange-soft);border:1px solid var(--orange);
-    color:var(--orange);border-radius:6px;padding:1px 8px;font-weight:700;
+    display:block;margin-top:3px;font-size:0.7rem;color:#9A968A;font-weight:400;
   }
   @media(max-width:640px){ .credit{text-align:left;white-space:normal;} }
 
@@ -239,8 +241,8 @@
         <p class="sub">줄거리 → 캐릭터 → 페이지 원고 → 장면 이미지 프롬프트, 4단계 자동 생성 도구</p>
       </div>
       <div class="credit">
-        made by <b>이경하</b><br>
-        <span class="claude">Claude 수정 2026.09.17</span>
+        made by <b>이경하</b>
+        <span class="claude">Claude 수정 · 2026.09.17</span>
       </div>
     </div>
     <div class="keybox">
