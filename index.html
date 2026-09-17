@@ -22,6 +22,7 @@
     --danger:#B4232A;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
+  [hidden]{display:none !important;}
   body{
     font-family:'Noto Sans KR',sans-serif;
     background:var(--cream);
@@ -49,12 +50,9 @@
   .credit{
     text-align:right;font-size:0.8rem;color:var(--muted);line-height:1.5;white-space:nowrap;
   }
-  .credit b{
-    display:inline-block;color:var(--teal-dark);font-weight:900;font-size:1rem;
-    border-bottom:2px solid var(--orange);padding-bottom:1px;
-  }
+  .credit b{color:var(--muted);font-weight:700;font-size:0.9rem;}
   .credit .claude{
-    display:block;margin-top:3px;font-size:0.7rem;color:#9A968A;font-weight:400;
+    display:block;margin-top:2px;font-size:0.72rem;color:var(--muted);font-weight:400;opacity:0.85;
   }
   @media(max-width:640px){ .credit{text-align:left;white-space:normal;} }
 
@@ -250,7 +248,7 @@
       <div class="keyrow">
         <input type="password" id="apiKey" placeholder="AIza... 로 시작하는 키를 붙여넣으세요" autocomplete="off">
         <button class="btn ghost" id="btnKeySave" type="button">키 저장</button>
-        <button class="btn ghost danger" id="btnKeyClear" type="button" hidden title="이 브라우저에 저장된 API 키를 삭제합니다">저장 삭제</button>
+        <button class="btn ghost danger" id="btnKeyClear" type="button" hidden title="이 브라우저에 저장된 API 키를 삭제하고 입력칸을 비웁니다">저장 삭제</button>
         <a class="btn api" href="https://aistudio.google.com/apikey" target="_blank" rel="noopener" title="Google AI Studio API 키 대시보드 열기">API 키 발급 ↗</a>
       </div>
       <div class="keystatus no" id="keyStatus">키가 아직 저장되지 않았습니다.</div>
@@ -874,9 +872,10 @@ document.getElementById("btnKeySave").addEventListener("click", function(){
 });
 /* [저장 삭제] — 브라우저에 저장된 키를 지운다 (입력칸의 키는 이번 화면에서 계속 쓸 수 있음) */
 document.getElementById("btnKeyClear").addEventListener("click", function(){
-  if(!confirm("이 브라우저에 저장된 API 키를 삭제할까요?\n\n입력칸의 키는 이번 화면에서는 그대로 쓸 수 있고, 창을 닫으면 사라집니다.")) return;
+  if(!confirm("이 브라우저에 저장된 API 키를 삭제할까요?\n\n입력칸도 함께 비워집니다. 다시 사용하려면 키를 새로 붙여넣으세요.")) return;
   try{ localStorage.removeItem(LS_API_KEY); }catch(e){}
   keyPersisted = false;
+  document.getElementById("apiKey").value = "";
   updateKeyStatus();
 });
 function updateKeyStatus(){
